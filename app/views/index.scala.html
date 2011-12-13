@@ -1,0 +1,51 @@
+@()
+
+@main(title = "Twitter Streaming") {
+
+<body>
+
+    <div class="span8">
+        <form>
+        <fieldset>
+
+        <div class="clearfix">
+            <label for="search">Search Term</label>
+            <div class="input">
+                <input class="xlarge" id="search" name="search" size="30" type="text" />
+            </div>
+        </div>
+        </fieldset>
+        </form>
+
+        <a id="gobtn" class="btn" href="#">Go!</a>
+    </div><!-- span8 -->
+
+    <div class="span8">
+    </div><!-- span8 -->
+
+    <iframe style="display:none" id="streaming"></iframe>
+
+<script>
+
+$(function(){
+
+    var usernameField = $("#username");
+    var passwordField = $("#password");
+    var searchField = $("#search");
+    $("#gobtn").click(function(){
+        $("streaming").attr("src", "/twitter/")
+        $.get("/twitter/" + searchField.val(), {
+            "username": usernameField.val(),
+            "password": passwordField.val()
+        }, function(){
+            alert("Got an end??");
+        });
+    });
+
+});
+
+</script>
+</body>
+
+}
+
